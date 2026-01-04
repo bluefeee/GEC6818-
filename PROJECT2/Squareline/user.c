@@ -1,7 +1,34 @@
 #include "user.h"
 #include "ui.h"
 
-user_p usr_head;
+user_p head;
+
+/* 把当前下拉框序号读出来 */
+static uint8_t get_cur_profile_idx(void)
+{
+    return lv_dropdown_get_selected(ui_Dropdown1);   /* 0-4 */
+}
+
+/* 把序号→指针（仅用于显示，不落盘） */
+static lv_img_dsc_t *index_to_img(uint8_t idx)
+{
+    static lv_img_dsc_t *const map[] = {
+        &ui_img_funina_png, &ui_img_keqing_png, &ui_img_linnite_png,
+        &ui_img_paimen_png, &ui_img_qiqi_png
+    };
+    return map[idx % 5];
+}
+
+static void save_user_profile(uint8_t idx)
+{
+    if (!head) return;
+    /* 找到当前登录用户（最后一条即是） */
+    user_p u = list_entry(head->list.prev, user_t, list);
+    u->profile_index = idx;
+    Write2File("user.txt", head);        /* 立即落盘 */
+}
+
+
 // 通用定时器回调：仅隐藏标签
 static void hide_label_cb(lv_timer_t *t) {
     lv_obj_add_flag(ui_Label13, LV_OBJ_FLAG_HIDDEN);
@@ -34,32 +61,34 @@ static void show_login_success(void) {
 }
 
 user_p UserInit() {
-    if(usr_head) return usr_head;
-    usr_head = (user_p)malloc(sizeof(user_t));
-    usr_head->list.next = &usr_head->list;
-    usr_head->list.prev = &usr_head->list;
-    return usr_head;
+    if(head) return head;
+    head = (user_p)malloc(sizeof(user_t));
+    head->list.next = &head->list;
+    head->list.prev = &head->list;
+    head->profile_index = 0;  
+    return head;
 }
 
 void UserCleanup() {
-    if (!usr_head) return;
+    if (!head) return;
     
-    list_p current = usr_head->list.next;
-    while (current != &usr_head->list) {
+    list_p current = head->list.next;
+    while (current != &head->list) {
         list_p next = current->next;
         user_p user = list_entry(current, user_t, list);
         free(user);
         current = next;
     }
-    free(usr_head);
-    usr_head = NULL;
+    free(head);
+    head = NULL;
 }
 
 user_p UserCreat(char *username, char *password) {
     user_p node = (user_p)malloc(sizeof(user_t));
     strcpy(node->username, username);
     strcpy(node->password, password);
-    printf("username:%s\npassword:%s\n", node->username, node->password);
+    printf("username:%s\tpassword:%s\n", node->username, node->password);
+    node->profile_index = 0;
     node->list.next = &node->list;
     node->list.prev = &node->list;   
     return node;
@@ -90,8 +119,8 @@ void registerUser() {
     printf("username:%s\npassword:%s\n", username, password);
     
     user_p ptr;
-    list_p tmp = usr_head->list.next;
-    while (tmp != &usr_head->list) {
+    list_p tmp = head->list.next;
+    while (tmp != &head->list) {
         ptr = list_entry(tmp, user_t, list);
         if (!strcmp(ptr->username, username)) {
             printf("用户名已存在，请重新输入\n");
@@ -102,8 +131,8 @@ void registerUser() {
     }
     
     user_p node = UserCreat(username, password);
-    ListAdd(&node->list, &usr_head->list);
-    Write2File("user.txt", usr_head);
+    ListAdd(&node->list, &head->list);
+    Write2File("user.txt", head);
     show_message("\n      注册成功      \n");
 }
 
@@ -115,15 +144,16 @@ int loginUser() {
     
     strcpy(username, lv_textarea_get_text(ui_UserInputTextArea));
     strcpy(password, lv_textarea_get_text(ui_PasswordInputTextArea));
-    printf("usr:%s\npwd:%s\n", username, password);
+    printf("usr:%s\tpwd:%s\n", username, password);
     
     user_p ptr;
-    list_p tmp = usr_head->list.next;
-    while (tmp != &usr_head->list) {
+    list_p tmp = head->list.next;
+    while (tmp != &head->list) {
         ptr = list_entry(tmp, user_t, list);
         if (!strcmp(ptr->username, username) && !strcmp(ptr->password, password)) {
             printf("登录成功\n");
             show_login_success();
+            save_user_profile(get_cur_profile_idx());
             return 1;
         } else {
             tmp = tmp->next;
@@ -135,23 +165,27 @@ int loginUser() {
     return 0;
 }
 
-void Write2File(const char* filename, user_p usr_head) {
+void Write2File(const char* filename, user_p head)
+{
+    if (!head) return;                 /* ① 判空 */
+
     FILE *fp = fopen(filename, "w");
     if (!fp) {
         perror("fopen failed");
         return;
     }
-    
-    list_p tmp = usr_head->list.next;
-    while (tmp != &usr_head->list) {
+
+    /* ② 从第一个真实用户开始写（跳过哨兵） */
+    list_p tmp = head->list.next;
+    while (tmp != &head->list) {       /* 哨兵自己指向自己，循环终止正确 */
         user_p node = list_entry(tmp, user_t, list);
-        fprintf(fp, "%s %s\n", node->username, node->password);
+        fprintf(fp, "%s %s %hhu\n", node->username, node->password, node->profile_index);
         tmp = tmp->next;
     }
     fclose(fp);
 }
 
-void ReadFromFile(const char* filename, user_p usr_head) {
+void ReadFromFile(const char* filename, user_p head) {
     FILE *fp = fopen(filename, "r");
     if (!fp) {
         printf("用户文件不存在，创建新文件\n");
@@ -159,9 +193,11 @@ void ReadFromFile(const char* filename, user_p usr_head) {
     }
     
     char username[64], password[64];
-    while (fscanf(fp, "%63s %63s", username, password) == 2) {
+    int  idx;
+    while (fscanf(fp, "%63s %63s %hhu", username, password, &idx) == 3) {
         user_p node = UserCreat(username, password);
-        ListAdd(&node->list, &usr_head->list);
+        node->profile_index = idx;           /* 文件里存的序号 */
+        ListAdd(&node->list, &head->list);
     }
     fclose(fp);
 }

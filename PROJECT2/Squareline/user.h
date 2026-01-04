@@ -14,6 +14,7 @@ typedef struct
 {
     char username[20];
     char password[20];
+    uint8_t profile_index; 
     list_t list;
 }user_t, *user_p;
 
@@ -37,7 +38,7 @@ void my_timer(lv_timer_t * t);
 
 
 extern volatile char flag;
-extern user_p usr_head;
+extern user_p head;
 extern lv_timer_t *timer;
 
 

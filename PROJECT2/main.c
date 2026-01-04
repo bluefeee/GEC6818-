@@ -13,7 +13,7 @@
 #define DISP_BUF_SIZE (128 * 1024U * 1024U)
 
 
-extern user_p usr_head;
+extern user_p head;
 
 int main(void)
 {
@@ -52,18 +52,17 @@ int main(void)
 
     //初始化用户
     UserInit();
-    ReadFromFile("user.txt", usr_head); 
-    static uint8_t first_run = 1;
-    if (first_run&& usr_head->list.next == &usr_head->list) {
+    ReadFromFile("user.txt", head); 
+    /* 如果链表仍为空，再插测试账号 */
+    if (head->list.next == &head->list) {
         printf("初始化测试账号\n");
         user_p u1 = UserCreat("1", "1");
-        ListAdd(&u1->list, &usr_head->list);
-        Write2File("user.txt", usr_head);
-        first_run = 0;
+        ListAdd(&u1->list, &head->list);
+        Write2File("user.txt", head);
     }
 
     ui_init();
-
+    server_init();
 
     /*Handle LitlevGL tasks (tickless mode)*/
     while(1) {

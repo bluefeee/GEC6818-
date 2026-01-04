@@ -71,6 +71,11 @@ LV_IMG_DECLARE(ui_img_paimen1_png);    // assets/paimen1.png
 LV_IMG_DECLARE(ui_img_linnite1_png);    // assets/linnite1.png
 LV_IMG_DECLARE(ui_img_qiqi1_png);    // assets/qiqi1.png
 LV_IMG_DECLARE(ui_img_x_png);    // assets/x.png
+LV_IMG_DECLARE(ui_img_funina2_png);    // assets/funina2.png
+LV_IMG_DECLARE(ui_img_keqing2_png);    // assets/keqing2.png
+LV_IMG_DECLARE(ui_img_linnite2_png);    // assets/linnite2.png
+LV_IMG_DECLARE(ui_img_paimen2_png);    // assets/paimen2.png
+LV_IMG_DECLARE(ui_img_qiqi2_png);    // assets/qiqi2.png
 LV_IMG_DECLARE(ui_img_998060503);    // assets/玩游戏.png
 LV_IMG_DECLARE(ui_img_1343904826);    // assets/井字棋盘_爱给网_aigei_com (1).png
 LV_IMG_DECLARE(ui_img_ok_png);    // assets/ok.png

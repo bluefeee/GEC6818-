@@ -6,7 +6,7 @@
 #include "ui.h"
 #include "weather.h"
 #include "mqtt_c_demo.h"
-
+#include "chat.h"
 /*=====================登录界面回调函数===========================*/
 void LogIn(lv_event_t * e)
 {
@@ -95,7 +95,7 @@ void LightMQTTcontrl(){  // 放在screen4初始化
     pthread_t tid;
     int ret = pthread_create(&tid, NULL, Lightimageshow, NULL);
     if (ret == 0) {
-        printf("成功创建新Lightimageshow线程(tid: %lu)\n", (unsigned long)tid);
+        // printf("成功创建新Lightimageshow线程(tid: %lu)\n", (unsigned long)tid);
         pthread_detach(tid); // 分离线程，自动回收资源
     }else {
         printf("创建Lightimageshow线程失败(错误码: %d)\n", ret);
@@ -110,7 +110,7 @@ void LEDcontorl(lv_event_t * e)
         // 先尝试取消线程
         int cancel_ret = pthread_cancel(g_mqtt_tid);
         if (cancel_ret == 0) {
-            printf("成功发送取消信号给旧MQTT线程（tid: %lu）\n", (unsigned long)g_mqtt_tid);
+            // printf("成功发送取消信号给旧MQTT线程（tid: %lu）\n", (unsigned long)g_mqtt_tid);
         } else {
             printf("取消旧MQTT线程失败（错误码: %d）\n", cancel_ret);
         }
@@ -140,12 +140,10 @@ void LEDcontorl(lv_event_t * e)
         led_index = 3;
     }
 
-
-
     // 翻转LED
     if (led_index >= 0 && led_index < 4) {
         LEDSTATE[led_index] = !LEDSTATE[led_index];
-        printf("按键对应LED%d状态已翻转:%s\n", led_index+7, LEDSTATE[led_index] ? "开启" : "关闭");
+        printf("LED%d已%s\n", led_index+7, LEDSTATE[led_index] ? "开启" : "关闭");
     }
     char buf[2] = {0};
 	for (int i = 0; i < 4; i++){
@@ -172,22 +170,47 @@ void LEDcontorl(lv_event_t * e)
 }
 
 /*=============================聊天界面===================================*/ 
+// screen5
 
-void ChatEvent(lv_event_t * e)
-{
-	// Your code here
-}
 
 void Chat(lv_event_t * e)
 {
-	// Your code here
+	lv_obj_t *btn = lv_event_get_target(e); // 获取当前按下的对象  ui_image15 29 31 32 33 34
+    // 判断点击的是哪个按钮，并初始化对应的聊天窗口
+    if (btn == ui_Image15) {
+        chat_init("群聊");    // 初始化群聊窗口
+        strcpy(chat_obj, "群聊");    // 设置当前聊天对象为群聊
+    } else if (btn == ui_Image29) {
+        chat_init("用户1");    // 初始化与用户1的聊天窗口
+        strcpy(chat_obj, "用户1");    // 设置当前聊天对象为用户1
+    } else if (btn == ui_Image31) {
+        chat_init("用户2");
+        strcpy(chat_obj, "用户2");
+    } else if (btn == ui_Image32) {
+        chat_init("用户3");
+        strcpy(chat_obj, "用户3");
+    } else if (btn == ui_Image33) {
+        chat_init("用户4");
+        strcpy(chat_obj, "用户4");
+    } else if (btn == ui_Image34) {
+        chat_init("用户5");
+        strcpy(chat_obj, "用户5");
+    }
 }
 
 void SendMessage(lv_event_t * e)
 {
-	// Your code here
+	// 获取输入框的内容
+	 char message[256] = {0}; 
+    strncpy(message, lv_textarea_get_text(ui_TextArea8), sizeof(message) - 1); 
+    message[sizeof(message) - 1] = '\0';
+	printf("发送消息: %s\n", message);printf("发送成功\n");
+	// 清空输入框
+	lv_textarea_set_text(ui_TextArea8, "");printf("清空输入框\n");
+    send_message_to_server(message, chat_obj);
 }
 
+/*============================游戏界面===================================*/
 void GameStart(lv_event_t * e)
 {
 	// Your code here
