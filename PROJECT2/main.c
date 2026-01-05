@@ -61,8 +61,9 @@ int main(void)
         Write2File("user.txt", head);
     }
 
+
     ui_init();
-    server_init();
+    
 
     /*Handle LitlevGL tasks (tickless mode)*/
     while(1) {

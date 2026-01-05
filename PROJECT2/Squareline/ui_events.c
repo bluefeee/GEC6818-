@@ -7,10 +7,13 @@
 #include "weather.h"
 #include "mqtt_c_demo.h"
 #include "chat.h"
+
+int login_avatar_img = 0;
 /*=====================登录界面回调函数===========================*/
 void LogIn(lv_event_t * e)
 {
-	if(loginUser()) {
+	if(loginUser()) {printf("登录成功\n");
+        chat_client_init();
 	}
 }
 
@@ -23,7 +26,7 @@ void SelectProfilePhoto(lv_event_t * e)
 {
     lv_obj_t * dropdown = lv_event_get_target(e);
     uint16_t selected_index = lv_dropdown_get_selected(dropdown);
-    
+    login_avatar_img = selected_index;
     switch(selected_index) {
         case 0:
             lv_img_set_src(ui_Image30, &ui_img_funina_png);
@@ -178,24 +181,19 @@ void Chat(lv_event_t * e)
 	lv_obj_t *btn = lv_event_get_target(e); // 获取当前按下的对象  ui_image15 29 31 32 33 34
     // 判断点击的是哪个按钮，并初始化对应的聊天窗口
     if (btn == ui_Image15) {
-        chat_init("群聊");    // 初始化群聊窗口
-        strcpy(chat_obj, "群聊");    // 设置当前聊天对象为群聊
+        chat_obj_index = 0;
     } else if (btn == ui_Image29) {
-        chat_init("用户1");    // 初始化与用户1的聊天窗口
-        strcpy(chat_obj, "用户1");    // 设置当前聊天对象为用户1
+        chat_obj_index = 1;
     } else if (btn == ui_Image31) {
-        chat_init("用户2");
-        strcpy(chat_obj, "用户2");
+        chat_obj_index = 2;
     } else if (btn == ui_Image32) {
-        chat_init("用户3");
-        strcpy(chat_obj, "用户3");
+        chat_obj_index = 3;
     } else if (btn == ui_Image33) {
-        chat_init("用户4");
-        strcpy(chat_obj, "用户4");
+        chat_obj_index = 4;
     } else if (btn == ui_Image34) {
-        chat_init("用户5");
-        strcpy(chat_obj, "用户5");
+        chat_obj_index = 5;
     }
+    chat_init(chat_obj[chat_obj_index]);
 }
 
 void SendMessage(lv_event_t * e)
@@ -207,7 +205,7 @@ void SendMessage(lv_event_t * e)
 	printf("发送消息: %s\n", message);printf("发送成功\n");
 	// 清空输入框
 	lv_textarea_set_text(ui_TextArea8, "");printf("清空输入框\n");
-    send_message_to_server(message, chat_obj);
+    send_message_to_server(message, chat_obj[chat_obj_index]);
 }
 
 /*============================游戏界面===================================*/

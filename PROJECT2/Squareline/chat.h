@@ -24,12 +24,14 @@ extern lv_img_dsc_t *avatar_img[5];  // 头像数组
 //     .msg_list = {0},  // 初始无消息
 //     .msg_count = 0,  // 初始无消息
 // };
-extern char chat_obj[20]; // 聊天对象
+extern char chat_obj[6][32]; // 聊天对象
+extern int chat_obj_index; // 聊天对象索引
+
 
 //函数声明
 void clear_chat_panel(void);
 void add_chat_msg_to_panel(ChatMsg_t *msg);
 void chat_init(char *username);
 extern void send_message_to_server(const char *content, const char *chat_obj);
-extern int server_init();
+extern void chat_client_init();
 #endif // !__CHAT_H__

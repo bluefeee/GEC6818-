@@ -1,7 +1,8 @@
 #include "user.h"
 #include "ui.h"
-
 user_p head;
+
+char login_user[32] = {0};
 
 /* 把当前下拉框序号读出来 */
 static uint8_t get_cur_profile_idx(void)
@@ -152,6 +153,7 @@ int loginUser() {
         ptr = list_entry(tmp, user_t, list);
         if (!strcmp(ptr->username, username) && !strcmp(ptr->password, password)) {
             printf("登录成功\n");
+            strcpy(login_user, username);
             show_login_success();
             save_user_profile(get_cur_profile_idx());
             return 1;

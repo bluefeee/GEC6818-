@@ -195,7 +195,7 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_style_text_font(ui_Label20, &ui_font_TextFont16, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Image29 = lv_img_create(ui_Panel9);
-    lv_img_set_src(ui_Image29, &ui_img_funina1_png);
+    lv_img_set_src(ui_Image29, &ui_img_funina2_png);
     lv_obj_set_width(ui_Image29, LV_SIZE_CONTENT);   /// 46
     lv_obj_set_height(ui_Image29, LV_SIZE_CONTENT);    /// 46
     lv_obj_set_x(ui_Image29, -352);
@@ -203,7 +203,7 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_align(ui_Image29, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_Image29, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(ui_Image29, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_add_flag(ui_Image29, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    // lv_obj_add_flag(ui_Image29, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
 
     ui_Label15 = lv_label_create(ui_Panel9);
@@ -212,13 +212,13 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_x(ui_Label15, -351);
     lv_obj_set_y(ui_Label15, -96);
     lv_obj_set_align(ui_Label15, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label15, "用户1");
+    lv_label_set_text(ui_Label15, "离线");
     lv_obj_set_style_text_font(ui_Label15, &ui_font_TextFont16, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_add_flag(ui_Label15, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    // lv_obj_add_flag(ui_Label15, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
 
     ui_Image31 = lv_img_create(ui_Panel9);
-    lv_img_set_src(ui_Image31, &ui_img_keqing1_png);
+    lv_img_set_src(ui_Image31, &ui_img_keqing2_png);
     lv_obj_set_width(ui_Image31, LV_SIZE_CONTENT);   /// 46
     lv_obj_set_height(ui_Image31, LV_SIZE_CONTENT);    /// 46
     lv_obj_set_x(ui_Image31, -352);
@@ -226,7 +226,7 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_align(ui_Image31, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_Image31, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(ui_Image31, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_add_flag(ui_Image31, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    // lv_obj_add_flag(ui_Image31, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
     ui_Label16 = lv_label_create(ui_Panel9);
     lv_obj_set_width(ui_Label16, LV_SIZE_CONTENT);   /// 1
@@ -234,12 +234,12 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_x(ui_Label16, -351);
     lv_obj_set_y(ui_Label16, -14);
     lv_obj_set_align(ui_Label16, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label16, "用户2");
+    lv_label_set_text(ui_Label16, "离线");
     lv_obj_set_style_text_font(ui_Label16, &ui_font_TextFont16, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_add_flag(ui_Label16, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    // lv_obj_add_flag(ui_Label16, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
     ui_Image32 = lv_img_create(ui_Panel9);
-    lv_img_set_src(ui_Image32, &ui_img_linnite1_png);
+    lv_img_set_src(ui_Image32, &ui_img_linnite2_png);
     lv_obj_set_width(ui_Image32, LV_SIZE_CONTENT);   /// 46
     lv_obj_set_height(ui_Image32, LV_SIZE_CONTENT);    /// 46
     lv_obj_set_x(ui_Image32, -350);
@@ -247,7 +247,7 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_align(ui_Image32, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_Image32, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(ui_Image32, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_add_flag(ui_Image32, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    // lv_obj_add_flag(ui_Image32, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
     ui_Label17 = lv_label_create(ui_Panel9);
     lv_obj_set_width(ui_Label17, LV_SIZE_CONTENT);   /// 1
@@ -255,12 +255,12 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_x(ui_Label17, -351);
     lv_obj_set_y(ui_Label17, 61);
     lv_obj_set_align(ui_Label17, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label17, "用户3");
+    lv_label_set_text(ui_Label17, "离线");
     lv_obj_set_style_text_font(ui_Label17, &ui_font_TextFont16, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_add_flag(ui_Label17, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    // lv_obj_add_flag(ui_Label17, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
     ui_Image33 = lv_img_create(ui_Panel9);
-    lv_img_set_src(ui_Image33, &ui_img_paimen1_png);
+    lv_img_set_src(ui_Image33, &ui_img_paimen2_png);
     lv_obj_set_width(ui_Image33, LV_SIZE_CONTENT);   /// 46
     lv_obj_set_height(ui_Image33, LV_SIZE_CONTENT);    /// 46
     lv_obj_set_x(ui_Image33, -354);
@@ -268,7 +268,7 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_align(ui_Image33, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_Image33, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(ui_Image33, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_add_flag(ui_Image33, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    // lv_obj_add_flag(ui_Image33, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
     ui_Label18 = lv_label_create(ui_Panel9);
     lv_obj_set_width(ui_Label18, LV_SIZE_CONTENT);   /// 1
@@ -276,12 +276,12 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_x(ui_Label18, -351);
     lv_obj_set_y(ui_Label18, 136);
     lv_obj_set_align(ui_Label18, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label18, "用户4");
+    lv_label_set_text(ui_Label18, "离线");
     lv_obj_set_style_text_font(ui_Label18, &ui_font_TextFont16, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_add_flag(ui_Label18, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    // lv_obj_add_flag(ui_Label18, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
     ui_Image34 = lv_img_create(ui_Panel9);
-    lv_img_set_src(ui_Image34, &ui_img_qiqi1_png);
+    lv_img_set_src(ui_Image34, &ui_img_qiqi2_png);
     lv_obj_set_width(ui_Image34, LV_SIZE_CONTENT);   /// 46
     lv_obj_set_height(ui_Image34, LV_SIZE_CONTENT);    /// 46
     lv_obj_set_x(ui_Image34, -353);
@@ -289,7 +289,7 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_align(ui_Image34, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_Image34, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(ui_Image34, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_add_flag(ui_Image34, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    // lv_obj_add_flag(ui_Image34, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
     ui_Label19 = lv_label_create(ui_Panel9);
     lv_obj_set_width(ui_Label19, LV_SIZE_CONTENT);   /// 1
@@ -297,9 +297,9 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_x(ui_Label19, -354);
     lv_obj_set_y(ui_Label19, 212);
     lv_obj_set_align(ui_Label19, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label19, "用户5");
+    lv_label_set_text(ui_Label19, "离线");
     lv_obj_set_style_text_font(ui_Label19, &ui_font_TextFont16, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_add_flag(ui_Label19, LV_OBJ_FLAG_HIDDEN);     /// Flags
+    // lv_obj_add_flag(ui_Label19, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
 
     ui_Button1 = lv_btn_create(ui_Screen5);
@@ -330,66 +330,6 @@ void ui_Screen5_screen_init(void)
     lv_obj_set_flex_align(ui_Panel10, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
     lv_obj_set_style_bg_img_opa(ui_Panel10, 220, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    // ui_Label21 = lv_label_create(ui_Panel10);
-    // lv_obj_set_width(ui_Label21, lv_pct(100));
-    // lv_obj_set_height(ui_Label21, LV_SIZE_CONTENT);    /// 0
-    // lv_obj_set_align(ui_Label21, LV_ALIGN_CENTER);
-    // lv_label_set_text(ui_Label21, "                                    群聊");
-    // lv_obj_clear_flag(ui_Label21, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    // lv_obj_set_style_text_font(ui_Label21, &ui_font_TextFont32, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    // ui_Image41 = lv_img_create(ui_Panel10);
-    // lv_img_set_src(ui_Image41, &ui_img_paimen1_png);
-    // lv_obj_set_x(ui_Image41, 115);
-    // lv_obj_set_y(ui_Image41, 54);
-    // lv_obj_add_flag(ui_Image41, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
-    // lv_obj_clear_flag(ui_Image41, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-
-    // ui_Label22 = lv_label_create(ui_Panel10);
-    // lv_obj_set_width(ui_Label22, LV_SIZE_CONTENT);   /// 1
-    // lv_obj_set_height(ui_Label22, LV_SIZE_CONTENT);    /// 1
-    // lv_obj_set_x(ui_Label22, -282);
-    // lv_obj_set_y(ui_Label22, -32);
-    // lv_obj_set_align(ui_Label22, LV_ALIGN_CENTER);
-    // lv_label_set_text(ui_Label22, "用户1");
-    // lv_obj_set_style_text_font(ui_Label22, &ui_font_TextFont16, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    // ui_Label23 = lv_label_create(ui_Panel10);
-    // lv_obj_set_width(ui_Label23, LV_SIZE_CONTENT);   /// 1
-    // lv_obj_set_height(ui_Label23, LV_SIZE_CONTENT);    /// 1
-    // lv_obj_set_x(ui_Label23, -111);
-    // lv_obj_set_y(ui_Label23, 47);
-    // lv_obj_set_align(ui_Label23, LV_ALIGN_CENTER);
-    // lv_label_set_text(ui_Label23, "我的天");
-    // lv_obj_set_style_text_font(ui_Label23, &ui_font_TextFont32, LV_PART_MAIN | LV_STATE_DEFAULT);
-    // lv_obj_set_style_radius(ui_Label23, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
-    // lv_obj_set_style_bg_color(ui_Label23, lv_color_hex(0xC7C7C7), LV_PART_MAIN | LV_STATE_DEFAULT);
-    // lv_obj_set_style_bg_opa(ui_Label23, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    // ui_Image52 = lv_img_create(ui_Panel10);
-    // lv_img_set_src(ui_Image52, &ui_img_qiqi1_png);
-    // lv_obj_set_width(ui_Image52, LV_SIZE_CONTENT);   /// 46
-    // lv_obj_set_height(ui_Image52, LV_SIZE_CONTENT);    /// 46
-    // lv_obj_set_align(ui_Image52, LV_ALIGN_CENTER);
-    // lv_obj_add_flag(ui_Image52, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
-    // lv_obj_clear_flag(ui_Image52, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-
-    // ui_Label29 = lv_label_create(ui_Panel10);
-    // lv_obj_set_width(ui_Label29, LV_SIZE_CONTENT);   /// 1
-    // lv_obj_set_height(ui_Label29, LV_SIZE_CONTENT);    /// 1
-    // lv_obj_set_align(ui_Label29, LV_ALIGN_CENTER);
-    // lv_label_set_text(ui_Label29, "用户2");
-    // lv_obj_set_style_text_font(ui_Label29, &ui_font_TextFont16, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    // ui_Label30 = lv_label_create(ui_Panel10);
-    // lv_obj_set_width(ui_Label30, LV_SIZE_CONTENT);   /// 1
-    // lv_obj_set_height(ui_Label30, LV_SIZE_CONTENT);    /// 1
-    // lv_obj_set_align(ui_Label30, LV_ALIGN_CENTER);
-    // lv_label_set_text(ui_Label30, "我勒个豆");
-    // lv_obj_set_style_text_font(ui_Label30, &ui_font_TextFont32, LV_PART_MAIN | LV_STATE_DEFAULT);
-    // lv_obj_set_style_radius(ui_Label30, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
-    // lv_obj_set_style_bg_color(ui_Label30, lv_color_hex(0x9E9E9E), LV_PART_MAIN | LV_STATE_DEFAULT);
-    // lv_obj_set_style_bg_opa(ui_Label30, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_TextArea8 = lv_textarea_create(ui_Screen5);
     lv_obj_set_width(ui_TextArea8, 492);
