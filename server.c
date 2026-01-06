@@ -15,6 +15,13 @@
 #define MAX_USER_COUNT 5
 #define LOGIN_TIMEOUT_SEC 30  // 仅用于登录阶段
 
+/*
+
+    服务器端代码,放在阿里云平台运行
+    nc 创建客户端测试
+
+*/
+
 typedef struct {
     int sockfd;
     char username[32];
